@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Cadastro
+{% endblock title %}
+
+
+
+{% block content %}
+
+    <div class="border col-12 col-md-8 col-lg-8 p-4">
+
+        <h1 class="my-4 text-center">Login</h1>
+
+        {% include 'partials/_form_errors_geral.html' with form=form %}
+        <form method="POST" action="{% url 'usuarios:login' %}">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div class="form-group mb-3">
+                    <label for="{{ field.id_for_label}}">{{ field.label }}</label>
+                    
+                    {% if field.field.widget.input_type == 'password' %}
+                        <div class="input-group">
+                            {{ field }}
+                            <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('{{ field.auto_id}}')">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                    
+                    {% include 'partials/_field_errors.html' with field=field %}
+    
+                </div>
+            {% endfor %}
+            
+            <button class="btn btn-primary" type="submit">Entrar</button>
+            <a href="{% url 'usuarios:cadastro' %}" class="btn btn-outline-link">Cadastre-se</a>
+        </form>
+    </div>
+    
+{% endblock content %}
+
