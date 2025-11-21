@@ -102,7 +102,6 @@ class CadastroUsuarioForm(UserCreationForm):
         return self.cleaned_data
 
 
-
 class UsuarioLoginForm(AuthenticationForm):
     
     username = forms.CharField(
