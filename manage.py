@@ -3,7 +3,7 @@
 import os
 import sys
 
-
+sys.path.append("src")
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_blog.settings')
