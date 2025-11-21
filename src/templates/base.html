@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}Meu blog{% endblock title %}
+    </title>
+    
+    {% block extra_head %}{% endblock extra_head %}
+
+</head>
+<body>
+    
+    {% include 'partials/_navbar.html' %}
+
+    <main>
+
+        {% block content %}{% endblock content %}
+            
+    </main>
+
+    {% include 'partials/_sidebar.html' %}
+
+    {% include 'partials/_footer.html' %}
+
+    
+    {% block extra_script %}{% endblock extra_script %}
+ 
+</body>
+</html>
