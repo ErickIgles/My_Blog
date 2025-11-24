@@ -1,17 +1,18 @@
-{% extends 'base.html' %}
+{% extends 'base_auth.html' %}
 
 
 {% block title %}
-    Cadastro
+    login
 {% endblock title %}
 
 
 
 {% block content %}
+    
+    <div class="card p-4 shadow-lg border-primary rounded" style="max-width: 480px;">
+        
 
-    <div class="border col-12 col-md-8 col-lg-8 p-4">
-
-        <h1 class="my-4 text-center">Login</h1>
+        <h2 class="text-center mb-4">Login</h2>
 
         {% include 'partials/_form_errors_geral.html' with form=form %}
         <form method="POST" action="{% url 'usuarios:login' %}">
@@ -37,10 +38,31 @@
                 </div>
             {% endfor %}
             
-            <button class="btn btn-primary" type="submit">Entrar</button>
-            <a href="{% url 'usuarios:cadastro' %}" class="btn btn-outline-link">Cadastre-se</a>
+            <button class="btn btn-primary w-100" type="submit">Entrar</button>
+
+            <div class="text-center mt-3">
+                <a href="{% url 'usuarios:cadastro' %}">Não tenho conta</a>
+            </div>
         </form>
     </div>
     
 {% endblock content %}
 
+{% block extra_script %}
+
+    <script>
+        function togglePassword(id){
+
+            const input = document.getElementById(id);
+
+            const type = input.type === 'password' ? 'text':'password';
+            input.type = type;
+
+            const icon = event.currentTarget.querySelector('i');
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+        }
+    </script>
+
+
+{% endblock extra_script %}
