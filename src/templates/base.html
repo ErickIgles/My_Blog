@@ -16,12 +16,16 @@
 <body>
     
     
-    {% if request.user.is_authenticated %}
-        {% include 'partials/_navbar.html' %}
-    {% endif %}
+    <header>
+        {% if request.user.is_authenticated %}
+            {% include 'partials/_navbar.html' %}
+        {% endif %}    
+    </header>
         
 
-    <main class="container my-5 d-flex justify-content-center back-primary">
+    <main class="container my-5">
+
+        {% include 'partials/_messages.html' %}
 
         {% block content %}{% endblock content %}
             
