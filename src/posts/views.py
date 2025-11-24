@@ -14,7 +14,7 @@ class PostListView(ListView):
     paginate_by = 10
 
 
-class PostDetailView(DeleteView):
+class PostDetailView(DetailView):
     model = Post
     template_name = 'posts/detalhe.html'
     context_object_name = 'post'
