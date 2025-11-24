@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 
 
 class CadastroUsuarioForm(UserCreationForm):    
@@ -11,7 +11,7 @@ class CadastroUsuarioForm(UserCreationForm):
         widget=forms.EmailInput(
             attrs={
                 'class': 'form-control',
-                'placehold': 'Digite seu e-mail'
+                'placeholder': 'Digite seu e-mail'
             }
         )
     )
@@ -21,7 +21,7 @@ class CadastroUsuarioForm(UserCreationForm):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placehold': 'Digite o seu nome de usuário'
+                'placeholder': 'Digite o seu nome de usuário'
             }
         )
     )
@@ -31,7 +31,7 @@ class CadastroUsuarioForm(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 'class': 'form-control',
-                'placehold': 'Digite sua senha'
+                'placeholder': 'Digite sua senha'
             }
         )
     )
@@ -41,7 +41,7 @@ class CadastroUsuarioForm(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 'class': 'form-control',
-                'placehold': 'Confirme a sua senha'
+                'placeholder': 'Confirme a sua senha'
             }
         )
     )
@@ -54,7 +54,6 @@ class CadastroUsuarioForm(UserCreationForm):
             'password1',
             'password2'
         )
-        
         
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -123,3 +122,73 @@ class UsuarioLoginForm(AuthenticationForm):
             }
         )
     )
+
+
+class UsuarioUpdateForm(forms.ModelForm):
+    
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'first_name',
+            'last_name',
+            'email'
+        ]
+        
+        widgets = {
+            'username': forms.TextInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'first_name': forms.TextInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'last_name': forms.TextInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'email': forms.EmailInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            )
+        }
+        
+        
+    def clean_username(self):
+        
+        username = self.cleaned_data['username']
+        qs = User.objects.filter(username=username).exclude(id=self.instance.pk)
+        
+        if qs.exists():
+            raise forms.ValidationError('Nome de usuário indisponível.')
+        
+        return username
+    
+    def clean_email(self):
+        
+        email = self.cleaned_data['email']
+        qs = User.objects.filter(email=email).exclude(id=self.instance.pk)
+        
+        if qs.exists():
+            raise forms.ValidationError('E-mail indisponível para uso.')
+        
+        return email
+
+class UsuarioPasswordChangeForm(PasswordChangeForm):
+    
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        self.fields['old_password'].label = 'Senha atual'
+        self.fields['new_password1'].label = 'Nova senha'
+        self.fields['new_password2'].label = 'Confirmar nova senha'
+        
+        
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
