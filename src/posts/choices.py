@@ -1,0 +1,8 @@
+STATUS_RASCUNHO = 1
+STATUS_PUBLICADO = 2
+
+
+C_TIPO_DE_STATUS = [
+    (STATUS_RASCUNHO, 'Rascunho'),
+    (STATUS_PUBLICADO, 'Publicado')
+]
