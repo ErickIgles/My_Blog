@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'usuarios.apps.UsuariosConfig',
     'core.apps.CoreConfig',
 
-    'simple_history'
+    'simple_history',
 ]
 
 MIDDLEWARE = [
