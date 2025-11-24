@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Alterar senha
+{% endblock title %}
+    
+
+
+{% block content %}
+    <div class="container d-flex justify-content-center">
+        <div class="card col-12 col-md-8 col-lg-6 p-4">
+
+            <h2 class="text-center mb-4">Alterar senha</h2>
+            
+            {% include 'partials/_form_errors_geral.html' with form=form %}
+            
+            <form method="POST" action="{% url 'usuarios:alterar_senha' %}">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="form-group mb-3">
+                        <label for="{{ field.id_for_label}}">{{ field.label }}</label>
+
+                        
+                        {% if field.field.widget.input_type == 'password' %}
+                            <div class="input-group">
+                                {{ field }}
+                                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('{{ field.auto_id}}')">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                        {% include 'partials/_field_errors.html' with field=field %}
+                    </div>
+                {% endfor %}
+
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <a href="{% url 'usuarios:perfil' %}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+    
+
+{% block extra_script %}
+
+    <script>
+        function togglePassword(id){
+
+            const input = document.getElementById(id);
+
+            const type = input.type === 'password' ? 'text':'password';
+            input.type = type;
+
+            const icon = event.currentTarget.querySelector('i');
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+        }
+    </script>
+
+
+{% endblock extra_script %}
