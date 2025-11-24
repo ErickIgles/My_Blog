@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_auth.html' %}
 
 
 {% block title %}
@@ -8,10 +8,9 @@
 
 
 {% block content %}
-
-    <div class="border col-12 col-md-8 col-lg-8 p-4">
-        
-        <h1 class="my-4 text-center">Cadastro de Usuário</h1>
+    
+    <div class="card p-4 shadow-lg border-primary rounded" style="max-width: 480px;">
+        <h2 class="text-center mb-4">Cadastro de Usuário</h2>
 
         {% include 'partials/_form_errors_geral.html' with form=form %}
         <form method="POST" action="{% url 'usuarios:cadastro' %}">
@@ -21,7 +20,7 @@
                 <div class="form-group mb-3">
                     <label for="{{ field.id_for_label}}">{{ field.label }}</label>
 
-                    
+                        
                     {% if field.field.widget.input_type == 'password' %}
                         <div class="input-group">
                             {{ field }}
@@ -33,12 +32,17 @@
                         {{ field }}
                     {% endif %}
                     {% include 'partials/_field_errors.html' with field=field %}
-                        
+                            
                 </div>
-            {% endfor %}
             
-            <button class="btn btn-primary" type="submit">Cadastrar</button>
-            <a href="{% url 'usuarios:login' %}" class="btn btn-outline-link">Login</a>
+            {% endfor %}
+        
+            <button class="btn btn-primary w-100" type="submit">Cadastrar</button>
+
+
+            <div class="text-center mt-3">
+                <a href="{% url 'usuarios:login' %}">Já tenho conta</a>
+            </div>
         </form>
     </div>
     
