@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 from core.models import ModelBase
 from tags.models import Tag
-
+from . import choices
 
 class Post(ModelBase):
     autor = models.ForeignKey(
@@ -29,6 +29,11 @@ class Post(ModelBase):
         Tag,
         related_name='posts',
         verbose_name='Tags'
+    )
+    status = models.IntegerField(
+        verbose_name='Status',
+        choices=choices.C_TIPO_DE_STATUS,
+        default=choices.STATUS_RASCUNHO
     )
     
     class Meta:
