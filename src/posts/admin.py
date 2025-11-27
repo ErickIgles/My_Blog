@@ -10,7 +10,6 @@ class PostAdmin(admin.ModelAdmin):
         'autor',
         'titulo',
         'conteudo',
-        'slug',
         'get_tags',
         'criado',
         'modificado',
@@ -36,3 +35,5 @@ class PostAdmin(admin.ModelAdmin):
         return ', '.join([tag.nome for tag in obj.tags.all()])
 
     get_tags.short_description = 'Tags'
+    
+    prepopulated_fields = {'slug': ('titulo',)}
