@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Posts{% endblock title %}
+
+{% block content %}
+
+    <div class="container py-4">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0">Posts</h2>
+
+            <a href="{% url 'posts:criar' %}" class="btn btn-primary">
+                + Novo post
+            </a>
+        </div>
+
+
+        {% if posts %}
+        
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+                
+                {% for post in posts %}
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body">
+
+                                <h5 class="card-title mb-2">
+                                    <a href="{% url 'posts:detalhe' post.slug %}"
+                                    class="text-decoration-none text-dark">
+                                        {{ post.titulo }}
+                                    </a>
+                                </h5>
+
+                                <p class="text-muted small mb-2">
+                                    {{ post.created_at|date:"d/m/Y" }}
+                                </p>
+
+                                <p class="card-text text-truncate">
+                                    {{ post.conteudo }}
+                                </p>
+
+                            </div>
+
+                            <div class="card-footer bg-white border-0">
+                                <a href="{% url 'posts:detalhe' post.slug %}" class="btn btn-outline-secondary w-100">
+                                    Ler mais
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            
+        {% else %}
+        
+            <p class="text-center text-muted py-5">
+                Nenhum post criado.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+{% endblock content %}
