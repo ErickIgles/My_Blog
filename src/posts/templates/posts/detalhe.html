@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.titulo }}{% endblock title %}
+
+{% block content %}
+    <div class="container py-4">
+
+        <div class="card shadow-sm border-0 mx-auto" style="max-width: 800px;">
+            <div class="card-body">
+
+                <h2 class="card-title mb-3 text-center">
+                    {{ post.titulo }}
+                </h2>
+
+                <p class="text-muted small text-center mb-4">
+                    Publicado em {{ post.criado|date:"d/m/Y" }}
+                    por <strong>{{ post.autor.username }}</strong>
+                </p>
+
+                <p class="card-text mb-4" style="white-space: pre-line;">
+                    {{ post.conteudo }}
+                </p>
+
+
+                <!-- TAGS -->
+                {% if post.tags.all %}
+                    <div class="mb-4">
+                        {% for tag in post.tags.all %}
+                            <span class="badge bg-primary">
+                                {{ tag.nome }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+
+                <hr>
+
+                <div class="d-flex justify-content-between">
+
+                    <a href="{% url 'posts:lista' %}" class="btn btn-outline-secondary">
+                        Voltar
+                    </a>
+
+                    {% if request.user.is_authenticated and request.user == post.autor %}
+                        <div class="d-flex gap-2">
+                            <a href="{% url 'posts:atualizar' post.slug %}" class="btn btn-primary">
+                                Editar
+                            </a>
+                            <a href="{% url 'posts:deletar' post.slug %}" class="btn btn-outline-danger">
+                                Apagar
+                            </a>
+                        </div>
+                    {% endif %}
+
+                </div>
+
+            </div>
+        </div>
+
+</div>
+{% endblock content %}
