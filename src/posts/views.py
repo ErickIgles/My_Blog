@@ -9,7 +9,7 @@ from .models import Post
 from .forms import PostForm
 
 
-class PostListView(ListView):
+class PostListView(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'posts/lista.html'
     context_object_name = 'posts'
