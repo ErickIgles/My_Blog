@@ -31,7 +31,8 @@ class Post(ModelBase):
     slug = models.SlugField(
         unique=True,
         db_index=True,
-        verbose_name='Slug'
+        verbose_name='Slug',
+        max_length=200
     )
     tags = models.ManyToManyField(
         Tag,
