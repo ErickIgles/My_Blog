@@ -8,7 +8,7 @@ class HomeView(ListView):
     model = Post
     template_name = 'core/home.html'
     context_object_name = 'posts'
-    paginate_by = 6
+    paginate_by = 10
     
     def get_queryset(self):
         qs = Post.publicados.all()\
