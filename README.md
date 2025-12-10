@@ -4,13 +4,13 @@ Este é um sistema web desenvolvido com Django, HTML, JavaScript, Bootstrap e ba
 
 
 ## 🚀 TECNOLOGIAS UTILIZADAS
-Python 
-Django Framework
-Docker
-PostgreSQL
-HTML
-Bootstrap
-JavaScript
+  -  Python 
+  -  Django Framework
+  -  Docker
+  -  PostgreSQL
+  -  HTML
+  -  Bootstrap
+  -  JavaScript
 
 
 
@@ -42,6 +42,9 @@ Após autenticação, o usuário tem acesso as seguintes funcionalidades:
     
     Post
         Local onde usuários criam seus post / listagem / atualização / exclusão
+
+    Tags
+        Local onde tem as tags de busca de posts
 
     Perfil
         Tela com botões de ações para editar dados / alterar senha / desativar conta
