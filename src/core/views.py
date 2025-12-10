@@ -19,11 +19,9 @@ class HomeView(ListView):
         
         if busca:
             qs = qs.filter(
-                Q(titulo__icontains=busca),
+                Q(titulo__icontains=busca) |
                 Q(conteudo__icontains=busca)
             )
 
         return qs
-        
-        
      
