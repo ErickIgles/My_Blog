@@ -2,7 +2,7 @@ Projeto de Blog
 
 Este é um sistema web desenvolvido com Django, HTML, JavaScript, Bootstrap e banco de dados PostgrSql, que permite que usuários criem post sobre diversos temas e que possam serem vistos por outros usuários. O sistema oferece autenticação de usuário, redefinição de senha e dados pessoais, criação de posts, atualização, exclusão e listagem em uma parte pessoal do usuário, ainda um área de filtragem por tag e área de listagem de posts de diversos usuários. Há pesquisa por titulo e conteúdo na barra de navegação.
 
-
+---
 ## 🚀 TECNOLOGIAS UTILIZADAS
   -  Python 
   -  Django Framework
@@ -12,12 +12,12 @@ Este é um sistema web desenvolvido com Django, HTML, JavaScript, Bootstrap e ba
   -  Bootstrap
   -  JavaScript
 
-
+---
 
 
 ## 🎯 Funcionalidades
-
-## 🔐 Autenticação de Usuário
+---
+## 🔐 AUTENTICAÇÃO DE USUÁRIO
 
 A ao usuário tentar usar qualquer funcionalidade será redirecionado para a àrea de autenticação (login/cadastro)
 Serão requisitados as seguintes informações nas seguintes telas:
@@ -31,9 +31,10 @@ Serão requisitados as seguintes informações nas seguintes telas:
     Tela de login:
         Nome de usuário
         Senha
+---
 
-
-## 🏠 Telas após autenticação
+---
+## 🏠 TELAS APÓS AUTENTICAÇÃO
 
 Após autenticação, o usuário tem acesso as seguintes funcionalidades:
 
@@ -57,9 +58,11 @@ Após autenticação, o usuário tem acesso as seguintes funcionalidades:
     
     desativar conta 
         Desativa o acesso do usuário no mesmo momento.
+---
 
+---
 
-## 🔒 Proteção
+## 🔒 PROTEÇÃO
 
     Cada post é vinculado ao usuário autenticado no momento da criação
     É utilizado um dispatch personalizado para verificar o usuário na atualização
@@ -67,7 +70,7 @@ Após autenticação, o usuário tem acesso as seguintes funcionalidades:
     Uma mensagem é exibida quando um usuário que não tem permissão de acesso tenta acessar:
     'Você não tem permissão para acessar ou editar este post.'
 
-
+---
 ## Como Executar o Projeto
 
 ### 1. Clone o repositório
