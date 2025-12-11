@@ -4,13 +4,13 @@ Este é um sistema web desenvolvido com Django, HTML, JavaScript, Bootstrap e ba
 
 ---
 ## 🚀 TECNOLOGIAS UTILIZADAS
-  -  Python 
-  -  Django Framework
-  -  Docker
-  -  PostgreSQL
-  -  HTML
-  -  Bootstrap
-  -  JavaScript
+  -  Python /
+  -  Django Framework /
+  -  Docker /
+  -  PostgreSQL /
+  -  HTML /
+  -  Bootstrap5 /
+  -  JavaScript /
 
 ---
 
@@ -75,14 +75,16 @@ Após autenticação, o usuário tem acesso as seguintes funcionalidades:
 
 ### 1. Clone o repositório
 ```bash
-https://github.com/ErickIgles/My_Blog.git
-cd seu-repositorios
+crie uma pasta para clonar o repositorio dentro. Exemplo: projeto_clonado_my_blog
+dentro da pasta execute: git clone https://github.com/ErickIgles/My_Blog.git
+depois execute: cd My_Blog
 ```
 
 
 ### 2. Crie e ative um ambiente virtual
 
 ```bash
+Dentro de My_Blog realize os seguintes passos
 # Para criar ambiente virtual
 python -m venv venv
 
@@ -97,15 +99,39 @@ venv\Scripts\activate
 
 ### 3. Instale as dependências
 ```bah
+Ao ter o ambiente virtual criado e ativado execute o seguinte comando:
 pip install -r requirements.txt
 ```
 
+### 4. Criando uma chave secreta
+```bash
+comando para gerar uma chave:
+   
+  1 digite no terminal: python manage.py shell
+  2 digite os seguintes comandos:
+     
 
-### 4. Configure as variáveis de ambiente
-Crie um arquivo .env na raiz do projeto com:
+    import secrets
+    import string
+    
+    chars = string.ascii_letters + string.digits + string.punctuation
+    secret_key = ''.join(secrets.choice(chars) for i in range(50))
+    print(secret_key)
+
+  3 pegue a chave amostrada pelo o print.
+
+```
+
+
+### 5. Configure as variáveis de ambiente
+Crie um arquivo .env dentro de My_Blog
 
 ```bash
-SECRET_KEY=sua_chave_secreta
+
+substitua (sua_chave_secreta) pela a chave que foi criada.
+SECRET_KEY=sua_chave_secreta  
+
+Substitua pelos os valores da variáveis pelos (nome do seu banco de dados, nome do usuário do banco, senha do banco, mantenha o localhost e a porta 5432)
 
 POSTGRES_DB=blog_db
 POSTGRES_USER=blog_user
@@ -114,7 +140,7 @@ POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 ```
 
-### 5. Suba o PostgreSQL com Docker
+### 6. Suba o PostgreSQL com Docker
 Certifique-se de que seu arquivo docker-compose.yml está assim:
 ```bash
 services:
@@ -136,21 +162,29 @@ services:
 execute: docker compose up -d
 ```
 
-### 6. Aplique as migrações
+### 7. Aplique as migrações
 ```bash
 python manage.py migrate
 ```
 
-### 7. Crie um superusuário (opcional)
+### 8. Crie um superusuário para que possa acessar o admin
 ```bash
 python manage.py createsuperuser
-```
+``` 
 
-### 8. Execute o servidor
+### 9. Execute o servidor
 ```bash
 python manage.py runserver
 
 Acesse o sistema em: http://127.0.0.1:8000/
 
 Acesse o admin em: http://127.0.0.1:8000/admin/
+```
+
+### 10. Cria os valores básicos necessários
+
+```bash
+  Dentro do admin vá até Tags e crie tags básicas para que possam ser utilizadas nos seus posts, pois os posts
+  necessitam de tags para serem postados.
+
 ```
